@@ -1,0 +1,12 @@
+{
+	"compilerOptions": {
+		"module": "CommonJS",
+		"outDir": "dist",
+		"strict": true,
+		"target": "ES2018"
+	},
+	"include": [
+		"src/index.ts",
+		"src/test.ts"
+	]
+}

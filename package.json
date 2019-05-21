@@ -1,0 +1,39 @@
+{
+  "name": "questable-client",
+  "version": "0.1.0",
+  "description": "Questable API Client written in Node.js",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/trgwii/Questable-client.git"
+  },
+  "keywords": [
+    "Questable",
+    "CLI",
+    "client",
+    "library"
+  ],
+  "author": "Thomas Rory Gummerson <thomas@gummerson.no> (https://trgwii.no)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/trgwii/Questable-client/issues"
+  },
+  "homepage": "https://github.com/trgwii/Questable-client#readme",
+  "dependencies": {
+    "axios": "^0.18.0"
+  },
+  "devDependencies": {
+    "@types/node": "^12.0.2",
+    "@typescript-eslint/eslint-plugin": "^1.9.0",
+    "@typescript-eslint/parser": "^1.9.0"
+  },
+  "eslintConfig": {
+    "parser": "@typescript-eslint/parser",
+    "plugins": [
+      "@typescript-eslint"
+    ]
+  }
+}
