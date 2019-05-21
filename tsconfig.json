@@ -6,7 +6,6 @@
 		"target": "ES2018"
 	},
 	"include": [
-		"src/index.ts",
-		"src/test.ts"
+		"src/index.ts"
 	]
 }

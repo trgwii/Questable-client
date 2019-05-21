@@ -43,12 +43,12 @@ export interface NewQuest {
 }
 
 export interface QuestUpdateFields {
-	state?: boolean,
-	name?: string,
-	priority?: Priority,
-	difficulty?: Difficulty
+	state?: boolean;
+	name?: string;
+	priority?: Priority;
+	difficulty?: Difficulty;
 }
 
 export interface QuestUpdate extends QuestUpdateFields {
-	id: number
+	id: number;
 }

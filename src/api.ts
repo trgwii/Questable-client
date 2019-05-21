@@ -2,7 +2,6 @@ import axios, { AxiosResponse } from 'axios';
 
 import {
 	Success,
-	Error,
 	Player,
 	Quest,
 	Priority,
@@ -20,11 +19,11 @@ import {
 } from './utils';
 
 export default class Client {
-	token: string;
-	url: string;
-	client: typeof axios;
+	private token: string;
+	private url: string;
+	private client: typeof axios;
 
-	constructor(
+	public constructor(
 		token: string,
 		url = 'https://api.questable.webionite.com/',
 		client = axios
@@ -34,57 +33,57 @@ export default class Client {
 		this.client = client;
 	}
 
-	static handle<T>(res: Promise<AxiosResponse<T>>): Promise<T> {
+	private static handle<T>(res: Promise<AxiosResponse<T>>): Promise<T> {
 		return res.then(getData).catch(throwError);
 	}
 
-	get<R, D = undefined>(path: string, data?: D): Promise<R> {
+	private get<R, D = undefined>(path: string, data?: D): Promise<R> {
 		return Client.handle(this.client(this.url + path, {
 			params: { token: this.token, ...data }
 		}));
 	}
 
-	post<D, R>(path: string, data?: D): Promise<R> {
-		return Client.handle(this.client.post<R>(this.url + path, stringify({
+	private post<D, R>(path: string, data?: D): Promise<R> {
+		return Client.handle(this .client.post<R>(this.url + path, stringify({
 			token: this.token,
 			...data
 		}), {
 			headers: {
 				'Content-Type': 'application/x-www-form-urlencoded'
 			}
-		}))
+		}));
 	}
-	delete<R, D = undefined>(path: string, data?: D): Promise<R> {
+	private delete<R, D = undefined>(path: string, data?: D): Promise<R> {
 		return Client.handle(this.client.delete(this.url + path, {
 			params: { token: this.token, ...data }
 		}));
 	}
 
-	auth() {
+	public auth() {
 		return this.get<Success>('auth')
 			.then(assertSuccessful('Invalid token'))
 			.then(() => this.token);
 	}
 
-	player() {
+	public player() {
 		return this.get<Player>('player');
 	}
 
-	getQuests() {
+	public getQuests() {
 		return this.get<Quest[]>('get_quests');
 	}
 
-	getQuest(id: number) {
+	public getQuest(id: number) {
 		return this.get<Quest, { id: number }>('get_quest', { id });
 	}
 
-	addQuest(name: string, priority: Priority, difficulty: Difficulty) {
+	public addQuest(name: string, priority: Priority, difficulty: Difficulty) {
 		return this.post<NewQuest, Quest>('add_quest', {
 			name, priority, difficulty
 		});
 	}
 
-	updateQuest(
+	public updateQuest(
 		id: number,
 		update: QuestUpdateFields
 	) {
@@ -93,26 +92,26 @@ export default class Client {
 			{ id, ...update });
 	}
 
-	deleteQuest(id: number) {
+	public deleteQuest(id: number) {
 		return this.delete<Success, { id: number }>('delete_quest', { id })
 			.then(assertSuccessful('Couldn\'t delete quest: ' + id));
 	}
 	
-	getSideQuests() {
+	public getSideQuests() {
 		return this.get<Quest[]>('get_side_quests');
 	}
 
-	getSideQuest(id: number) {
+	public getSideQuest(id: number) {
 		return this.get<Quest, { id: number }>('get_side_quest', { id });
 	}
 
-	addSideQuest(name: string, priority: Priority, difficulty: Difficulty) {
+	public addSideQuest(name: string, priority: Priority, difficulty: Difficulty) {
 		return this.post<NewQuest, Quest>('add_side_quest', {
 			name, priority, difficulty
 		});
 	}
 
-	updateSideQuest(
+	public updateSideQuest(
 		id: number,
 		update: QuestUpdateFields
 	) {
@@ -121,7 +120,7 @@ export default class Client {
 			{ id, ...update });
 	}
 
-	deleteSideQuest(id: number) {
+	public deleteSideQuest(id: number) {
 		return this.delete<Success, { id: number }>(
 			'delete_side_quest',
 			{ id })
