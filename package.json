@@ -1,6 +1,6 @@
 {
   "name": "questable",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Questable API Client written in Node.js",
   "main": "dist/index.js",
   "scripts": {
