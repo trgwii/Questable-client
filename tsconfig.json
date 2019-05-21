@@ -3,7 +3,9 @@
 		"module": "CommonJS",
 		"outDir": "dist",
 		"strict": true,
-		"target": "ES2018"
+		"target": "ES2018",
+		"declaration": true,
+		"declarationDir": "dist"
 	},
 	"include": [
 		"src/index.ts"
