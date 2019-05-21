@@ -1,5 +1,5 @@
 {
-  "name": "questable-client",
+  "name": "questable",
   "version": "0.1.0",
   "description": "Questable API Client written in Node.js",
   "main": "dist/index.js",
